@@ -4,6 +4,13 @@ import Shuffle from '@/components/Shuffle';
 import StaggeredMenu from '@/components/StaggeredMenu';
 import { pressStart2P } from '@/lib/fonts';
 import Image from 'next/image';
+// import DecayCard from '@/components/DecayCard';
+
+import dynamic from "next/dynamic"
+const DecayCard = dynamic(
+  () => import("@/components/DecayCard"),
+  { ssr: false }
+)
 
 
 const menuItems = [
@@ -19,8 +26,8 @@ const socialItems = [
 
 export default function Home() {
   return (
-    <section className='relative text-[#FED700] w-screen'>
-      <div className='w-full h-screen fixed -z-10 top-0 left-0 bg-black' >
+    <section className='relative text-[#FED700] w-full overflow-x-hidden'>
+      <div className='fixed inset-0 -z-10 bg-black' >
         <GridScan
           sensitivity={0.75}
           lineThickness={1}
@@ -38,7 +45,7 @@ export default function Home() {
           enableWebcam={false}
         />
       </div>
-      {/* <div className='h-[100vh]'>
+      <div className='h-screen fixed inset-0 z-20 '>
         <StaggeredMenu
           position="right"
           items={menuItems}
@@ -49,12 +56,12 @@ export default function Home() {
           openMenuButtonColor="#000000"
           changeMenuColorOnOpen={true}
           colors={['#FFFFE0', '#FFF800']}
-          logoUrl="/path-to-your-logo.svg"
+          logoUrl="/images/star.svg"
           accentColor="#FFF800"
           onMenuOpen={() => console.log('Menu opened')}
           onMenuClose={() => console.log('Menu closed')}
         />
-      </div> */}
+      </div>
       <div className="relative h-screen flex justify-center items-center overflow-hidden">
         <Image
           src='/images/star.svg'
@@ -108,11 +115,15 @@ export default function Home() {
           loopDelay={3}
         />
       </div>
-      <div className="h-screen">
-        cultural
-      </div>
-      <div className="h-screen">
-        events
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <DecayCard
+          image="/images/event (1).png"
+          enableGyro={true}
+          gyroSensitivity={0.3}
+        >
+        </DecayCard>
+
       </div>
     </section>
   );
