@@ -9,11 +9,6 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-import dynamic from "next/dynamic"
-const DecayCard = dynamic(
-  () => import("@/components/DecayCard"),
-  { ssr: false }
-)
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -29,13 +24,17 @@ const socialItems = [
   { label: 'Website', link: 'https://musaliarcollege.com' },
 ];
 
+const eventLabels = ["MUSALIAR COLLAGE", "FEB 5, 6, 7", "TECH FEST"];
+
 export default function Home() {
   const containerRef = useRef(null);
   const imagesRef = useRef([]);
   const starsRef = useRef([]);
+  const ribbonsRef = useRef([]);
 
   useGSAP(() => {
     const images = imagesRef.current;
+    const ribbons = ribbonsRef.current;
     starsRef.current.forEach((star, i) => {
       const speed = (i + 1) * 100; // Varying speeds
       gsap.to(star, {
@@ -62,6 +61,8 @@ export default function Home() {
     });
 
     images.forEach((img, index) => {
+      const ribbon = ribbons[index];
+      const isEven = index % 2 === 0;
       // Initial state: Off-screen bottom, full size
       gsap.set(img, {
         yPercent: 100,
@@ -69,6 +70,10 @@ export default function Home() {
         opacity: 1,
         filter: "blur(0px) brightness(1)"
       });
+      gsap.set(ribbon, {
+        xPercent: isEven ? 150 : -150
+      });
+
 
       // 1. Slide In to Center from bottom
       tl.to(img, {
@@ -76,6 +81,12 @@ export default function Home() {
         duration: 1,
         ease: "power2.out"
       }, index === 0 ? 0 : "-=0.5");
+
+      tl.to(ribbon, {
+        xPercent: isEven ? -150 : 150, // Continuous slide across the screen
+        duration: 2.5,
+        ease: "none"
+      }, index === 0 ? 0 : "-=1.2");
 
       // 2. Recede into Depth (shrink, move up slightly, fade and blur)
       if (index < images.length) {
@@ -214,6 +225,18 @@ export default function Home() {
         ref={containerRef}
         className="relative h-screen w-full flex justify-center items-center overflow-hidden bg-transparent -mt-[90vh] md:-mt-[70vh]"
       >
+        {/* Ribbon Layer */}
+        {eventLabels.map((label, i) => (
+          <div
+            key={`ribbon-${i}`}
+            ref={el => (ribbonsRef.current[i] = el)}
+            className={`absolute w-[300vw] md:w-[200vw] h-10 md:h-16 ${i % 2 === 0 ? 'bg-[#FED700]' : 'bg-[#04F24E]'} flex items-center justify-center z-20 shadow-2xl bottom-0`}
+          >
+            <span className={`${pressStart2P.className} text-black text-xl md:text-4xl whitespace-nowrap`}>
+            • {label} • {label} • {label} •
+            </span>
+          </div>
+        ))}
         <div className="relative w-full h-full flex justify-center items-center">
           {[1, 2, 3].map((num, i) => (
             <div
