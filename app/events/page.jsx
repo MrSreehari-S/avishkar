@@ -7,10 +7,15 @@ export default function EventsPage() {
     <main className="min-h-[100dvh] w-full flex bg-black text-white">
 
       {/* MAIN EVENTS */}
-      <div className="w-1/2 flex items-center justify-center border-r border-white/10">
-        <div className="text-center space-y-6">
+      <div
+        className="w-1/2 relative flex items-end justify-center border-r border-white/10
+                   bg-no-repeat bg-center bg-[length:95%]"
+        style={{ backgroundImage: "url('/events/main-bg.webp')" }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
-          <h2 className="text-5xl font-semibold tracking-tight">
+        <div className="relative w-full px-10 pb-16 text-center space-y-4 z-10">
+          <h2 className="text-4xl font-semibold tracking-tight">
             Main Events
           </h2>
 
@@ -21,7 +26,7 @@ export default function EventsPage() {
           <Link href="/events/main">
             <button
               className="
-                mt-4
+                mt-2
                 px-10 py-3 rounded-full
                 border border-white/30
                 font-medium
@@ -37,15 +42,19 @@ export default function EventsPage() {
               Explore →
             </button>
           </Link>
-
         </div>
       </div>
 
       {/* DEPARTMENT EVENTS */}
-      <div className="w-1/2 flex items-center justify-center">
-        <div className="text-center space-y-6">
+      <div
+        className="w-1/2 relative flex items-end justify-center bg-cover bg-center
+                   brightness-105 saturate-110"
+        style={{ backgroundImage: "url('/events/dept-bg.webp')" }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
-          <h2 className="text-5xl font-semibold tracking-tight">
+        <div className="relative w-full px-10 pb-16 text-center space-y-4 z-10">
+          <h2 className="text-4xl font-semibold tracking-tight">
             Department Events
           </h2>
 
@@ -56,7 +65,7 @@ export default function EventsPage() {
           <Link href="/events/dept">
             <button
               className="
-                mt-4
+                mt-2
                 px-10 py-3 rounded-full
                 border border-white/30
                 font-medium
@@ -72,7 +81,6 @@ export default function EventsPage() {
               Choose Department →
             </button>
           </Link>
-
         </div>
       </div>
 
