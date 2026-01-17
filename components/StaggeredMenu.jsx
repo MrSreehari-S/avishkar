@@ -1,6 +1,7 @@
 'use client'
 import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import Link from 'next/link';
 
 export const StaggeredMenu = ({
   position = 'right',
@@ -447,7 +448,10 @@ export const StaggeredMenu = ({
                   <li
                     className="sm-panel-itemWrap relative overflow-hidden leading-none"
                     key={it.label + idx}>
-                    <a
+                    <Link
+                      onClick={() => {
+                        closeMenu();
+                      }}
                       className="sm-panel-item relative text-black font-semibold text-[4rem] cursor-pointer leading-none tracking-[-2px] uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.4em]"
                       href={it.link}
                       aria-label={it.ariaLabel}
@@ -456,7 +460,7 @@ export const StaggeredMenu = ({
                         className="sm-panel-itemLabel inline-block [transform-origin:50%_100%] will-change-transform">
                         {it.label}
                       </span>
-                    </a>
+                    </Link>
                   </li>
                 ))
               ) : (
