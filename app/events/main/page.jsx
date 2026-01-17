@@ -8,4 +8,4 @@ const MainEventsPage = () => {
   )
 }
 
-export default MainEventPage
+export default MainEventsPage
