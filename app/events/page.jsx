@@ -1,94 +1,127 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function EventsPage() {
   return (
-    <main className="min-h-[100dvh] w-full flex flex-col md:flex-row bg-black text-white">
+    <main
+      className="
+        min-h-[100dvh] w-full flex flex-col md:flex-row
+        text-white relative bg-cover bg-center
+        pt-20 md:pt-0
+      "
+      style={{ backgroundImage: "url('/events/comic-bg.png')" }}
+    >
+      {/* ================= MAIN EVENTS ================= */}
+      <div className="w-full md:w-1/2 min-h-[50dvh] md:min-h-[100dvh] flex items-end justify-center">
+        <div className="w-full px-6 md:px-10 pb-12 md:pb-16 text-center space-y-4">
 
-      {/* MAIN EVENTS */}
-      <div
-        className="w-full md:w-1/2 min-h-[50dvh] md:min-h-[100dvh] relative flex items-end justify-center 
-                   border-b md:border-b-0 md:border-r border-white/10
-                   bg-no-repeat bg-center bg-cover md:bg-[length:95%]"
-        style={{ backgroundImage: "url('/events/main-bg.webp')" }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" style={{ zIndex: 1 }} />
+          {/* CARD IMAGE (CLICKABLE + HOVER TARGET) */}
+          <Link href="/events/main" className="group mx-auto w-fit block">
+            <div
+              className="
+                relative w-[220px] md:w-[260px] aspect-[3/4]
+                transition-transform duration-300
+                group-hover:-translate-y-2
+              "
+            >
+              <Image
+                src="/events/card1.png"
+                alt="Main Events Card"
+                fill
+                className="
+                  object-contain
+                  transition-all duration-300
+                  group-hover:scale-105
+                  group-hover:drop-shadow-[0_0_50px_rgba(220,38,38,0.7)]
+                "
+                priority
+              />
+            </div>
+          </Link>
 
-        <div className="relative w-full px-6 md:px-10 pb-12 md:pb-16 text-center space-y-3 md:space-y-4" style={{ zIndex: 2 }}>
           <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
             Main Events
           </h2>
 
-          <p className="text-yellow-400/80 max-w-sm mx-auto text-sm md:text-base">
-            Flagship events, competitions and keynote sessions
-          </p>
-
-          <div>
-            <Link 
-              href="/events/main"
-              className="
-                inline-block
-                mt-2
-                px-8 md:px-10 py-2.5 md:py-3 rounded-full
-                border border-white/30
-                font-medium text-sm md:text-base
-                transition-all duration-300
-                hover:-translate-y-2
-                hover:scale-105
-                hover:border-yellow-400
-                hover:text-yellow-400
-                hover:shadow-[0_0_40px_rgba(255,200,0,0.5)]
-                active:scale-95
-              "
-            >
-              Explore →
+          {/* EXPLORE BUTTON (CLICKABLE ONLY) */}
+          <div className="pt-1">
+            <Link href="/events/main">
+              <span
+                className="
+                  inline-block px-8 md:px-10 py-2.5 md:py-3 rounded-full
+                  border border-white/30
+                  font-medium text-sm md:text-base
+                  transition-all duration-300
+                  hover:border-red-500
+                  hover:text-red-400
+                  hover:shadow-[0_0_30px_rgba(220,38,38,0.75)]
+                  active:scale-95
+                "
+              >
+                Explore →
+              </span>
             </Link>
           </div>
+
         </div>
       </div>
 
-      {/* DEPARTMENT EVENTS */}
-      <div
-        className="w-full md:w-1/2 min-h-[50dvh] md:min-h-[100dvh] relative flex items-end justify-center 
-                   bg-cover bg-center brightness-105 saturate-110"
-        style={{ backgroundImage: "url('/events/dept-bg.webp')" }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" style={{ zIndex: 1 }} />
+      {/* ================= DEPARTMENT EVENTS ================= */}
+      <div className="w-full md:w-1/2 min-h-[50dvh] md:min-h-[100dvh] flex items-end justify-center">
+        <div className="w-full px-6 md:px-10 pb-12 md:pb-16 text-center space-y-4">
 
-        <div className="relative w-full px-6 md:px-10 pb-12 md:pb-16 text-center space-y-3 md:space-y-4" style={{ zIndex: 2 }}>
+          {/* CARD IMAGE (CLICKABLE + HOVER TARGET) */}
+          <Link href="/events/dept" className="group mx-auto w-fit block">
+            <div
+              className="
+                relative w-[220px] md:w-[260px] aspect-[3/4]
+                transition-transform duration-300
+                group-hover:-translate-y-2
+              "
+            >
+              <Image
+                src="/events/card2.png"
+                alt="Department Events Card"
+                fill
+                className="
+                  object-contain
+                  transition-all duration-300
+                  group-hover:scale-105
+                  group-hover:drop-shadow-[0_0_50px_rgba(220,38,38,0.7)]
+                "
+                priority
+              />
+            </div>
+          </Link>
+
           <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
             Department Events
           </h2>
 
-          <p className="text-yellow-400/80 max-w-sm mx-auto text-sm md:text-base">
-            Explore events organized by individual departments
-          </p>
-          
-          <div>
-            <Link 
-              href="/events/dept"
-              className="
-                inline-block
-                mt-2
-                px-8 md:px-10 py-2.5 md:py-3 rounded-full
-                border border-white/30
-                font-medium text-sm md:text-base
-                transition-all duration-300
-                hover:-translate-y-2
-                hover:scale-105
-                hover:border-yellow-400
-                hover:text-yellow-400
-                hover:shadow-[0_0_40px_rgba(255,200,0,0.5)]
-                active:scale-95
-              "
-            >
-              Choose Department →
+          {/* EXPLORE BUTTON (CLICKABLE ONLY) */}
+          <div className="pt-1">
+            <Link href="/events/dept">
+              <span
+                className="
+                  inline-block px-8 md:px-10 py-2.5 md:py-3 rounded-full
+                  border border-white/30
+                  font-medium text-sm md:text-base
+                  transition-all duration-300
+                  hover:border-red-500
+                  hover:text-red-400
+                  hover:shadow-[0_0_30px_rgba(220,38,38,0.75)]
+                  active:scale-95
+                "
+              >
+                Explore →
+              </span>
             </Link>
           </div>
+
         </div>
       </div>
-
     </main>
   )
 }
