@@ -14,10 +14,10 @@ export async function POST(req) {
        🔐 AUTHENTICATION (TEMP MODE)
        ===================================================== */
     // TEMP: Using header for Postman testing
-    // const userId = req.headers.get("x-user-id");
+     const userId = req.headers.get("x-user-id");
 
     // FINAL (Clerk):
-    const { userId: clerkUserId } = auth();
+    //const { userId: clerkUserId } = auth();
 
     if (!userId) {
       return Response.json(
@@ -149,7 +149,7 @@ export async function POST(req) {
       teamMembers: event.type === "team" ? teamMembers : [],
       paymentScreenshot,
       uniqueCode,
-      qrCode,
+      
     });
 
     /* =====================================================
