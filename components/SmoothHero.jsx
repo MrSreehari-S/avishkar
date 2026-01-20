@@ -73,7 +73,7 @@ const CenterImage = () => {
         backgroundSize,
         opacity,
         backgroundImage:
-          "url('/images/mainPoster.webp')",
+          "url('/images/pistoniaPoster.png')",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
@@ -92,7 +92,7 @@ const ParallaxImages = () => {
         className="w-1/3"
       />
       <ParallaxImg
-        src="/images/hero2.webp"
+        src="/images/cultural.png"
         alt="An example of a space launch"
         start={200}
         end={-250}
