@@ -17,22 +17,22 @@ const Preload = () => {
         // Reduced from 6s to 3s (50% reduction)
         gsap.from(".loader-1", {
             width: 0,
-            duration: 3,
+            duration: 1.5,
             ease: "power4.inOut",
         });
 
         // Reduced delay from 1.9s to 0.95s and duration from 5s to 2.5s (50% reduction)
         gsap.from(".loader-2", {
             width: 0,
-            delay: 0.95,
-            duration: 2.5,
+            delay: 0.55,
+            duration: 1.75,
             ease: "power4.inOut",
         });
 
         // Reduced delay from 6s to 3s (50% reduction)
         gsap.to(".loader", {
             background: "none",
-            delay: 3,
+            delay: 1.5,
             duration: 0.1,
         });
 
@@ -42,7 +42,7 @@ const Preload = () => {
             clipPath: "polygon(0 0, 71% 0, 100% 100%, 0% 100%)",
             ease: "power4.inOut",
             duration: 1,
-            delay: 3,
+            delay: 1.5,
         });
 
         // Reduced delay from 6s to 3s (50% reduction)
@@ -52,14 +52,14 @@ const Preload = () => {
             clipPath: "polygon(12% 0, 100% 0%, 88% 100%, 0% 100%)",
             ease: "power4.inOut",
             duration: 1,
-            delay: 3,
+            delay: 1.5,
         });
 
         // Reduced delay from 7s to 3.5s (50% reduction)
         gsap.to(".loader", {
             scale: 50,
             duration: 0.5,
-            delay: 4,
+            delay: 2.5,
             ease: "power2.inOut",
         });
 
@@ -69,7 +69,7 @@ const Preload = () => {
             y: 500,
             x: -2300,
             duration: 0.5,
-            delay: 4,
+            delay: 2.5,
             ease: "power2.inOut",
         });
 
@@ -77,7 +77,7 @@ const Preload = () => {
         gsap.to(".loading-screen", {
             opacity: 0,
             duration: 0.5,
-            delay: 4.25,
+            delay: 3,
             ease: "power2.inOut",
         });
 

@@ -1,9 +1,9 @@
 import { Geist, Geist_Mono, Bangers } from "next/font/google";
 import "./globals.css";
 import StaggeredMenu from "@/components/StaggeredMenu";
-import Preload from "@/components/Preload";
 import { ClerkProvider } from "@clerk/nextjs";
 import AuthUserButtonWrapper from "@/components/ui/AuthUserButtonWrapper";
+import LenisProvider from "@/components/LenisProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,7 +47,6 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} ${bangers.variable}`}
       >
         <body className="antialiased">
-          <Preload />
           <div>
             {/* Menu overlay (unchanged) */}
             <div className="h-[100dvh] fixed inset-0 z-20 pointer-events-none">
@@ -79,8 +78,9 @@ export default function RootLayout({ children }) {
               <AuthUserButtonWrapper />
             </div>
           </div>
-
-          {children}
+          <LenisProvider>
+            {children}
+          </LenisProvider>
         </body>
       </html>
     </ClerkProvider>
