@@ -2,15 +2,14 @@
 
 import { GridScan } from '@/components/GridScan';
 import HorizontalScrollCarousel from '@/components/HorozontalScroll';
-import { SmoothScrollHero } from '@/components/SmoothHero';
 import { Skiper67 } from '@/components/ui/skiper-ui/skiper67';
-import Shuffle from '@/components/Shuffle';
 import { pressStart2P } from '@/lib/fonts';
 import Image from 'next/image';
 import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Preload from '@/components/Preload';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -39,7 +38,8 @@ const Page = () => {
 
   return (
     <section className='relative text-[#AD242C] w-full'>
-      <div className='fixed inset-0 -z-10 bg-black'>
+      <Preload/>
+      <div className='fixed inset-0 -z-10 bg-black pointer-events-auto'>
         <GridScan
           sensitivity={0.75}
           lineThickness={1}
@@ -47,7 +47,7 @@ const Page = () => {
           gridScale={0.15}
           scanColor="#AD242C"
           scanOpacity={0.5}
-          enablePost={false}
+          enablePost={true}
           enableGyro={true}
           bloomIntensity={0.6}
           chromaticAberration={0.002}
@@ -55,11 +55,12 @@ const Page = () => {
           scanDirection='forward'
           scanDelay={2}
           enableWebcam={false}
+          scanGlow={0.25}
         />
       </div>
 
       {/* Hero Section with Stars and Shuffle */}
-      <div ref={heroRef} className="relative h-[100dvh] flex justify-center items-center overflow-hidden">
+      <div ref={heroRef} className="relative h-[100dvh] flex justify-center items-center overflow-hidden pointer-events-none">
         {/* Star 1 */}
         <Image
           ref={el => (starsRef.current[0] = el)}
@@ -120,30 +121,15 @@ const Page = () => {
           className="absolute top-[80%] left-[60%] -rotate-45"
         />
 
-        <div className="">
-          {/* <Shuffle
-            className={`${pressStart2P.className}`}
-            text="Avishkar"
-            shuffleDirection="right"
-            duration={0.45}
-            animationMode="evenodd"
-            shuffleTimes={1}
-            ease="power3.out"
-            stagger={0.03}
-            threshold={0.1}
-            triggerOnce={true}
-            triggerOnHover={true}
-            respectReducedMotion={true}
-            loop
-            loopDelay={3}
-          /> */}
+        <div className="flex flex-col items-center">
           <Image
+          className='z-10'
           src='/images/logoName.PNG'
           alt='logo'
           width={400}
           height={400}
           />
-          <h3 className={`${pressStart2P.className} text-lg`}>2026</h3>
+          <h3 className={`${pressStart2P.className} text-xl drop-shadow-[2px_2px_0px_#000] drop-shadow-[#ffb8bc]`}>2026</h3>
         </div>
       </div>
 
