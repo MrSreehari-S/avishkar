@@ -38,7 +38,7 @@ const Page = () => {
 
   return (
     <section className='relative text-[#AD242C] w-full'>
-      {/* <Preload/> */}
+      <Preload/>
       <div className='fixed inset-0 -z-10 bg-black pointer-events-auto'>
         <GridScan
           sensitivity={0.75}
