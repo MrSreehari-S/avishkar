@@ -8,7 +8,7 @@ export async function POST(req) {
 
     let department = null;
 
-    // Check credentials
+    // 🔍 Check credentials
     for (const [dept, creds] of Object.entries(ADMIN_CREDENTIALS)) {
       if (creds.username === username && creds.password === password) {
         department = dept;
@@ -23,9 +23,12 @@ export async function POST(req) {
       );
     }
 
-    // Generate JWT token
+    // 🔐 Generate JWT (department stored here)
     const token = jwt.sign(
-      { role: "admin", department },
+      {
+        role: "admin",
+        department,
+      },
       process.env.ADMIN_JWT_SECRET,
       { expiresIn: "1d" }
     );
@@ -35,11 +38,10 @@ export async function POST(req) {
       token,
       department,
     });
-
   } catch (error) {
     console.error("Login Error:", error);
     return NextResponse.json(
-      { message: error.message || "Server Error" },
+      { message: "Server Error" },
       { status: 500 }
     );
   }
