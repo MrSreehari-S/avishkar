@@ -159,6 +159,7 @@ export default function SmoothScrollComponent() {
           left: 50%;
           transform: translateX(-50%);
           opacity: 0;
+          z-index: 1;
         }
 
         .smooth-scroll-wrapper h1 {
@@ -224,10 +225,10 @@ export default function SmoothScrollComponent() {
           grid-template-rows: repeat(3, 1fr);
           grid-column-gap: 0.2rem;
           grid-row-gap: 0.2rem;
-          width: 90vw;
+          width: 98vw;
           margin: 0 auto;
           padding-top: 40vh;
-          z-index: -1;
+          z-index: 0;
         }
 
         .image-grid .image_cont {
@@ -398,18 +399,7 @@ export default function SmoothScrollComponent() {
         .spacer {
           height: 10vh;
         }
-        @media screen and (max-width: 768px) {
-  .image-grid {
-    width: 95vw;
-    padding-top: 10vh;
-    grid-column-gap: 0.5rem;
-    grid-row-gap: 0.5rem;
-  }
-  
-  .image-grid .image_cont {
-    aspect-ratio: 1/1;
-  }
-}
+        
       `}</style>
 
       <div ref={wrapperRef} id="wrapper" className="smooth-scroll-wrapper">
