@@ -17,13 +17,13 @@ const Page = () => {
     return (
         <>
             <div className="fixed inset-0 -z-10 bg-black pointer-events-auto">
-                <Vortex
+                {/* <Vortex
                     backgroundColor="black"
                     rangeY={300}
                     particleCount={500}
                     baseHue={299}
                     className="flex items-center flex-col justify-center w-full h-full"
-                />
+                /> */}
             </div>
 
             <section

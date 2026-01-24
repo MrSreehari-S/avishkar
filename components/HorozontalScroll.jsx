@@ -118,13 +118,13 @@ const cards = [
     {
         url: "/images/highlights/proShow1.webp",
         title: "Pro Show 1",
-        path: "/pro-show#proshow1",
+        path: "/pro-show/zero-pause",
         id: 2,
     },  
     {
         url: "/images/highlights/proShow2.webp",
         title: "Pro Show 2",
-        path: "/pro-show#proshow2",
+        path: "/pro-show/g-live",
         id: 3,
     },
     {
