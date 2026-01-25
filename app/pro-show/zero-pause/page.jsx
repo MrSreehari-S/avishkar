@@ -58,11 +58,11 @@ const WorkItem = ({ background, images, title, subtitle, colorClass }) => {
             {images.map((img, idx) => (
               <div 
                 key={idx} 
-                className="relative w-[21vw] h-full max-[767px]:w-[15vw]" 
+                className="relative w-[21vw] h-full max-[767px]:w-[35vw] max-[479px]:w-[45vw]" 
                 data-work="item-image"
               >
                 <div 
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 aspect-[4/5] w-[25vw] bg-white/75 p-[0.35em]"
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 aspect-[4/5] w-[25vw] max-[767px]:w-[40vw] max-[479px]:w-[50vw] bg-white/75 p-[0.35em]"
                 >
                   <img src={img} alt="" className="w-full h-full object-cover" />
                 </div>
@@ -98,7 +98,7 @@ const FooterSection = () => {
       <div className="relative flex justify-between items-end w-[99vw] h-screen">
         <div className="absolute w-full h-full">
           <img 
-            src="https://moussamamadou.github.io/scroll-trigger-gsap-gently/images/FOOTER.webp" 
+            src="/images/proshow/zeropause/landing5.webp" 
             alt="" 
             className="w-full h-full object-cover opacity-60"
           />
@@ -106,15 +106,15 @@ const FooterSection = () => {
         <div className="relative flex flex-col justify-between items-stretch w-full h-full px-[3.5vw] py-20 pb-10 text-white uppercase tracking-[0.5rem] font-['Doner_Display',Arial,sans-serif] text-[11.5vw] font-normal leading-none max-[479px]:text-[12.5vw]">
           <div className="overflow-hidden">
             <div data-line>
-              <span className="text-[#b8e6da]">SCROLL</span>
+              <span className="text-[#e6b8b8]">A NIGHT</span>
             </div>
           </div>
           <div className="overflow-hidden">
-            <div className="relative text-center">MISSION</div>
+            <div className="relative text-center">TO</div>
           </div>
           <div className="overflow-hidden">
             <div className="relative text-right" data-line>
-              <span className="text-[#b8e6da]">COMPLETE</span>
+              <span className="text-[#e6b8b8]">remember</span>
             </div>
           </div>
         </div>
@@ -323,37 +323,37 @@ export default function ScrollGSAPComponent() {
     {
       background: '/images/proshow/zeropause/landing2.webp',
       images: [
-        'https://moussamamadou.github.io/scroll-trigger-gsap-gently/images/SCARLETT-2.webp',
-        'https://moussamamadou.github.io/scroll-trigger-gsap-gently/images/SCARLETT-4.webp',
-        'https://moussamamadou.github.io/scroll-trigger-gsap-gently/images/SCARLETT-3.webp',
-        'https://moussamamadou.github.io/scroll-trigger-gsap-gently/images/SCARLETT-1.webp',
+        '/images/proshow/zeropause/l2 (4).webp',
+        '/images/proshow/zeropause/l2 (1).webp',
+        '/images/proshow/zeropause/l2 (3).webp',
+        '/images/proshow/zeropause/l2 (2).webp',
       ],
-      title: 'Heart',
-      subtitle: 'SCARLET',
-      colorClass: 'text-[#ffa6a6]',
+      title: 'Musaliar',
+      subtitle: 'collage',
+      colorClass: 'text-[#7ABECD]',
     },
     {
       background: '/images/proshow/zeropause/landing3.webp',
       images: [
-        'https://moussamamadou.github.io/scroll-trigger-gsap-gently/images/PURPLE-2.jpg',
-        'https://moussamamadou.github.io/scroll-trigger-gsap-gently/images/PURPLE-1.jpg',
-        'https://moussamamadou.github.io/scroll-trigger-gsap-gently/images/PURPLE-3.jpg',
-        'https://moussamamadou.github.io/scroll-trigger-gsap-gently/images/PURPLE-4.jpg',
+        '/images/proshow/zeropause/l3 (1).webp',
+        '/images/proshow/zeropause/l3 (2).webp',
+        '/images/proshow/zeropause/l3 (3).webp',
+        '/images/proshow/zeropause/l3 (4).webp',
       ],
-      title: 'DREAM',
-      subtitle: 'Purple',
-      colorClass: 'text-[#b3d3ff]',
+      title: 'Feb-7',
+      subtitle: '2026',
+      colorClass: 'text-[#FBD16E]',
     },
     {
       background: '/images/proshow/zeropause/landing4.webp',
       images: [
-        'https://moussamamadou.github.io/scroll-trigger-gsap-gently/images/YELLOW.jpg',
-        'https://moussamamadou.github.io/scroll-trigger-gsap-gently/images/YELLOW-1.jpg',
-        'https://moussamamadou.github.io/scroll-trigger-gsap-gently/images/YELLOW-2.jpg',
-        'https://moussamamadou.github.io/scroll-trigger-gsap-gently/images/YELLOW-3.jpg',
+        '/images/proshow/zeropause/l4 (1).webp',
+        '/images/proshow/zeropause/l4 (3).webp',
+        '/images/proshow/zeropause/l4 (2).webp',
+        '/images/proshow/zeropause/l4 (4).webp',
       ],
-      title: 'SHINE',
-      subtitle: 'Yellow',
+      title: 'saturday',
+      subtitle: '7:00pm',
       colorClass: 'text-[#FDA2FD]',
     },
   ];
