@@ -29,8 +29,9 @@ export const metadata = {
 const menuItems = [
   { label: "Home", ariaLabel: "Go to home page", link: "/" },
   { label: "Events", ariaLabel: "View our events", link: "/events" },
-  { label: "Auto Show", ariaLabel: "View our AutoShow", link: "/auto-show" },
-  { label: "Pro Show", ariaLabel: "View our Expo", link: "/pro-show" },
+  { label: "Autoshow", ariaLabel: "View our AutoShow", link: "/auto-show" },
+  { label: "Proshow 1", ariaLabel: "View our Expo", link: "/pro-show/zero-pause" },
+  { label: "Proshow 2", ariaLabel: "View our Expo", link: "/pro-show/g-live" },
   { label: "About", ariaLabel: "Learn about us", link: "/about" },
   { label: "Contact", ariaLabel: "Get in touch", link: "/contact" },
 ];
