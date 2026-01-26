@@ -5,6 +5,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { SplitText } from 'gsap/SplitText';
+import Image from 'next/image';
 
 export default function SmoothScrollComponent() {
   const wrapperRef = useRef(null);
@@ -12,38 +13,56 @@ export default function SmoothScrollComponent() {
   const staggerRef = useRef(null);
 
   useEffect(() => {
+    // Check if plugins are available
+    if (!ScrollTrigger || !ScrollSmoother || !SplitText) {
+      console.error('GSAP plugins not loaded');
+      return;
+    }
+
     // Register plugins
     gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText);
 
-    // Create the smooth scroller
-    const smoother = ScrollSmoother.create({
-      wrapper: wrapperRef.current,
-      content: contentRef.current,
-      smooth: 1,
-      normalizeScroll: true,
-      ignoreMobileResize: true,
-      effects: true,
-      preventDefault: true
-    });
+    // Kill any existing instances first
+    ScrollTrigger.getAll().forEach(st => st.kill());
+    const existingSmoother = ScrollSmoother.get();
+    if (existingSmoother) existingSmoother.kill();
 
-    gsap.set(".heading", {
-      yPercent: -150,
-      opacity: 1
-    });
+    // Small delay to ensure DOM is ready
+    const timer = setTimeout(() => {
+      try {
+        // Create the smooth scroller
+        const smoother = ScrollSmoother.create({
+          wrapper: wrapperRef.current,
+          content: contentRef.current,
+          smooth: 1,
+          normalizeScroll: true,
+          ignoreMobileResize: true,
+          effects: true,
+          preventDefault: true
+        });
 
-    let tl = gsap.timeline();
-    let mySplitText = new SplitText(staggerRef.current, { type: "words,chars" });
-    let chars = mySplitText.chars;
-    
-    chars.forEach((char, i) => {
-      smoother.effects(char, { speed: 1, lag: (i + 1) * 0.1 });
-    });
+        gsap.set(".heading", {
+          yPercent: -150,
+          opacity: 1
+        });
+
+        let mySplitText = new SplitText(staggerRef.current, { type: "words,chars" });
+        let chars = mySplitText.chars;
+
+        chars.forEach((char, i) => {
+          smoother.effects(char, { speed: 1, lag: (i + 1) * 0.1 });
+        });
+      } catch (error) {
+        console.error('GSAP initialization error:', error);
+      }
+    }, 100);
 
     // Cleanup
     return () => {
-      smoother.kill();
+      clearTimeout(timer);
+      const smoother = ScrollSmoother.get();
+      if (smoother) smoother.kill();
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-      mySplitText.revert();
     };
   }, []);
 
@@ -416,7 +435,7 @@ export default function SmoothScrollComponent() {
               <p data-speed="0.7">जीLive</p>
             </div>
           </div>
-          
+
           <section className="image-grid container smooth-section">
             <div className="image_cont" data-speed="1">
               <img data-speed="auto" src="/images/proshow/gLive/gLive (1).webp" alt="" />
@@ -491,9 +510,22 @@ export default function SmoothScrollComponent() {
             <div className="image_cont">
               <img data-speed="auto" src="/images/proshow/gLive/gLive (5).webp" alt="" />
             </div>
+            <Image
+              src="/images/proshow/gLive/glivelogo.webp"
+              width={126}
+              height={126}
+              alt='logoGLive'
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                zIndex: 10
+              }}
+            />
           </section>
 
-          <section className="spacer smooth-section"></section>
+          {/* <section className="spacer smooth-section"></section> */}
         </section>
       </div>
     </>
