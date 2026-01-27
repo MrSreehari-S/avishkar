@@ -4,6 +4,7 @@ import StaggeredMenu from "@/components/StaggeredMenu";
 import { ClerkProvider } from "@clerk/nextjs";
 import AuthUserButtonWrapper from "@/components/ui/AuthUserButtonWrapper";
 import LenisProvider from "@/components/LenisProvider";
+import { Analytics } from "@vercel/analytics/next"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -50,7 +51,7 @@ export default function RootLayout({ children }) {
       >
         
         <body className="antialiased">
-          
+          <Analytics/>
           <div>
             {/* Menu overlay (unchanged) */}
             <div className="h-[100dvh] fixed inset-0 z-20 pointer-events-none">
@@ -82,9 +83,9 @@ export default function RootLayout({ children }) {
               <AuthUserButtonWrapper />
             </div>
           </div>
-          <LenisProvider>
+          {/* <LenisProvider> */}
             {children}
-          </LenisProvider>
+          {/* </LenisProvider> */}
         </body>
       </html>
     </ClerkProvider>

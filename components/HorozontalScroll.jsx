@@ -338,7 +338,7 @@ export default function HorizontalScroll() {
                     {images.map((img, idx) => (
                         <figure
                             key={idx}
-                            className="relative m-0 "
+                            className="relative m-0 mb-9"
                             style={{
                                 gridColumn: screenSize.width >= 768 ? `${img.c} / span ${img.s || 1}` : 'auto',
                                 gridRow: screenSize.width >= 768 ? img.r : 'auto',
