@@ -4,36 +4,41 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from '@studio-freight/lenis';
+import Image from 'next/image';
 
-// Navigation Component
 
 
 // Hero Section Component
 const HeroSection = () => {
   return (
-    <section className="sticky top-0 bg-black">
+    <section className="sticky top-0 bg-black h-screen">
       <div className="relative flex justify-between items-end w-[99vw] h-screen">
-        <div className="absolute w-full h-full">
-          <img 
-            src="/images/proshow/zeropause/landing.webp" 
-            alt="" 
+        <div className="fixed inset-0 h-full z-0">
+          <img
+            src="/images/proshow/zeropause/landing.webp"
+            alt=""
             className="w-full h-full object-cover brightness-[55%]"
             style={{ filter: 'brightness(55%)' }}
           />
         </div>
-        <div className="relative flex flex-col justify-between items-stretch w-full h-screen px-[3.5vw] py-20 pb-10 text-white uppercase font-['Doner_Display',Arial,sans-serif] text-[12vw] leading-none">
+        <div className="fixed inset-0 flex flex-col justify-between items-stretch w-full h-screen px-[3.5vw] py-20 pb-10 text-white uppercase font-['Doner_Display',Arial,sans-serif] text-[12vw] leading-none z-0">
           <div className="overflow-hidden">
             <div className="overflow-hidden">
               <div className="relative" data-line>Zero</div>
             </div>
           </div>
           <div className="overflow-hidden">
-            <div className="relative text-center">
-              <span className="text-[#e6b8b8]">Pause</span>
+            <div className="relative text-center flex justify-center items-center">
+              <Image
+                src='/images/proshow/zeropause/logo.webp'
+                alt='logo'
+                width={350}
+                height={350}
+              />
             </div>
           </div>
           <div className="overflow-hidden">
-            <div className="relative text-right" data-line>-avishkar</div>
+            <div className="relative text-right text-[#e6b8b8]" data-line>Pause</div>
           </div>
         </div>
       </div>
@@ -46,8 +51,8 @@ const WorkItem = ({ background, images, title, subtitle, colorClass }) => {
   return (
     <div className="relative flex items-stretch w-screen h-screen bg-black overflow-hidden" data-work="item">
       <div className="relative flex w-full h-full" data-work="item-container">
-        <div 
-          className="absolute w-full h-full aspect-video" 
+        <div
+          className="absolute w-full h-full aspect-video"
           data-work="item-background"
           style={{ filter: 'brightness(1)' }}
         >
@@ -56,12 +61,12 @@ const WorkItem = ({ background, images, title, subtitle, colorClass }) => {
         <div className="relative flex flex-col flex-1 justify-around items-stretch w-full px-[4vw] py-20 pb-10 gap-4">
           <div className="absolute inset-x-0 inset-y-0 flex flex-row justify-center items-center w-full">
             {images.map((img, idx) => (
-              <div 
-                key={idx} 
-                className="relative w-[21vw] h-full max-[767px]:w-[35vw] max-[479px]:w-[45vw]" 
+              <div
+                key={idx}
+                className="relative w-[21vw] h-full max-[767px]:w-[35vw] max-[479px]:w-[45vw]"
                 data-work="item-image"
               >
-                <div 
+                <div
                   className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 aspect-[4/5] w-[25vw] max-[767px]:w-[40vw] max-[479px]:w-[50vw] bg-white/75 p-[0.35em]"
                 >
                   <img src={img} alt="" className="w-full h-full object-cover" />
@@ -82,8 +87,8 @@ const WorkItem = ({ background, images, title, subtitle, colorClass }) => {
             </div>
           </div>
         </div>
-        <div 
-          className="absolute inset-0 z-[99] w-[105%] h-[105%] bg-black opacity-0 pointer-events-none" 
+        <div
+          className="absolute inset-0 z-[99] w-[105%] h-[105%] bg-black opacity-0 pointer-events-none"
           data-work="item-overlay"
         />
       </div>
@@ -97,9 +102,9 @@ const FooterSection = () => {
     <section className="sticky z-[1] bg-black">
       <div className="relative flex justify-between items-end w-[99vw] h-screen">
         <div className="absolute w-full h-full">
-          <img 
-            src="/images/proshow/zeropause/landing5.webp" 
-            alt="" 
+          <img
+            src="/images/proshow/zeropause/landing5.webp"
+            alt=""
             className="w-full h-full object-cover opacity-60"
           />
         </div>
@@ -129,7 +134,7 @@ export default function ScrollGSAPComponent() {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-    
+
     const workSection = workSectionRef.current;
     const workItems = workSection.querySelectorAll('[data-work="item"]');
 
@@ -237,7 +242,7 @@ export default function ScrollGSAPComponent() {
         scale: 1,
         scrollTrigger: getBaseScrollTrigger(ghostItems[index]),
       });
-      
+
       // Text animations
       [0, 1].forEach(i => {
         gsap.set(lines[i], {
@@ -395,7 +400,7 @@ export default function ScrollGSAPComponent() {
           overflow-x: hidden;
         }
       `}</style>
-      
+
       <div className="overflow-x-hidden bg-[#001]">
         <HeroSection />
         <section className="relative" ref={workSectionRef} data-work="section">
