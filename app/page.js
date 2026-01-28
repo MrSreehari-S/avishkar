@@ -5,17 +5,44 @@ import ScrollMorphComponent from '@/components/HorozontalScroll';
 import { Skiper67 } from '@/components/ui/skiper-ui/skiper67';
 import { pressStart2P } from '@/lib/fonts';
 import Image from 'next/image';
-import { useRef } from 'react';
+import { useRef, useEffect, useLayoutEffect } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Preload from '@/components/Preload';
+import { useRouter } from 'next/navigation';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const Page = () => {
   const starsRef = useRef([]);
   const heroRef = useRef(null);
+  const router = useRouter();
+
+  useLayoutEffect(() => {
+    // Force scroll to top immediately on mount (before paint)
+    window.history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, []);
+
+  useEffect(() => {
+    // Additional scroll to top after mount
+    window.scrollTo(0, 0);
+    
+    // Set scroll restoration to manual to prevent Next.js from restoring scroll position
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
+    return () => {
+      // Clean up
+      if ('scrollRestoration' in window.history) {
+        window.history.scrollRestoration = 'auto';
+      }
+    };
+  }, []);
 
   useGSAP(() => {
     starsRef.current.forEach((star, i) => {
