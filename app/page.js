@@ -89,8 +89,7 @@ const Page = () => {
         </div>
 
         {/* Hero Section with Stars and Shuffle */}
-        <div ref={heroRef} className="relative h-[100dvh] flex justify-center items-center overflow-hidden pointer-events-none">
-          {/* Star 1 */}
+        <div ref={heroRef} className="relative h-[100lvh] flex justify-center items-center overflow-hidden pointer-events-none">
           <Image
             ref={el => (starsRef.current[0] = el)}
             src="/images/star.svg"
@@ -100,7 +99,6 @@ const Page = () => {
             className="absolute top-40 right-10"
           />
 
-          {/* Star 2 */}
           <Image
             ref={el => (starsRef.current[1] = el)}
             src="/images/star.svg"
@@ -110,7 +108,6 @@ const Page = () => {
             className="absolute top-[60%] -right-10"
           />
 
-          {/* Star 3 */}
           <Image
             ref={el => (starsRef.current[2] = el)}
             src="/images/star.svg"
@@ -120,7 +117,6 @@ const Page = () => {
             className="absolute top-[33%] -left-32 rotate-45"
           />
 
-          {/* Star 4 */}
           <Image
             ref={el => (starsRef.current[3] = el)}
             src="/images/star.svg"
@@ -130,7 +126,6 @@ const Page = () => {
             className="absolute bottom-10 right-60 rotate-12"
           />
 
-          {/* Star 5 */}
           <Image
             ref={el => (starsRef.current[4] = el)}
             src="/images/star.svg"
@@ -140,7 +135,6 @@ const Page = () => {
             className="absolute bottom-40 left-10 -rotate-12"
           />
 
-          {/* Star 6 */}
           <Image
             ref={el => (starsRef.current[5] = el)}
             src="/images/star.svg"

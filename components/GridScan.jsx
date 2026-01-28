@@ -852,7 +852,7 @@ export const GridScan = ({
   return (
     <div
       ref={containerRef}
-      className={`relative w-full h-full overflow-hidden ${className ?? ''}`}
+      className={`relative w-full h-[100lvh] overflow-hidden ${className ?? ''}`}
       style={style}>
       <div
         ref={canvasWrapperRef}
