@@ -1,17 +1,43 @@
 'use client';
-
 import React, { useEffect } from 'react';
 import gsap from 'gsap';
 
 const Preload = () => {
-
     useEffect(() => {
+        // Kill any existing animations on these elements
+        gsap.killTweensOf(".loader");
+        gsap.killTweensOf(".loader-1");
+        gsap.killTweensOf(".loader-2");
+        gsap.killTweensOf(".loading-screen");
+
+        // Reset all properties to initial state
+        gsap.set(".loading-screen", {
+            opacity: 1,
+            clearProps: "all"
+        });
+
+        gsap.set(".loader", {
+            background: "black",
+            scale: 1,
+            rotate: 0,
+            x: 0,
+            y: 0,
+            clearProps: "transform"
+        });
 
         gsap.set(".loader-1", {
-            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)"
+            width: "100px",
+            x: 0,
+            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+            clearProps: "transform"
         });
+
         gsap.set(".loader-2", {
-            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)"
+            width: "250px",
+            rotate: 0,
+            y: 0,
+            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+            clearProps: "transform"
         });
 
         // Reduced from 6s to 3s (50% reduction)
@@ -81,6 +107,13 @@ const Preload = () => {
             ease: "power2.inOut",
         });
 
+        // Cleanup function
+        return () => {
+            gsap.killTweensOf(".loader");
+            gsap.killTweensOf(".loader-1");
+            gsap.killTweensOf(".loader-2");
+            gsap.killTweensOf(".loading-screen");
+        };
     }, []);
 
     return (

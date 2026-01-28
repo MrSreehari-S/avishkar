@@ -5,17 +5,44 @@ import ScrollMorphComponent from '@/components/HorozontalScroll';
 import { Skiper67 } from '@/components/ui/skiper-ui/skiper67';
 import { pressStart2P } from '@/lib/fonts';
 import Image from 'next/image';
-import { useRef } from 'react';
+import { useRef, useEffect, useLayoutEffect } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Preload from '@/components/Preload';
+import { useRouter } from 'next/navigation';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const Page = () => {
   const starsRef = useRef([]);
   const heroRef = useRef(null);
+  const router = useRouter();
+
+  useLayoutEffect(() => {
+    // Force scroll to top immediately on mount (before paint)
+    window.history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, []);
+
+  useEffect(() => {
+    // Additional scroll to top after mount
+    window.scrollTo(0, 0);
+    
+    // Set scroll restoration to manual to prevent Next.js from restoring scroll position
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
+    return () => {
+      // Clean up
+      if ('scrollRestoration' in window.history) {
+        window.history.scrollRestoration = 'auto';
+      }
+    };
+  }, []);
 
   useGSAP(() => {
     starsRef.current.forEach((star, i) => {
@@ -62,8 +89,7 @@ const Page = () => {
         </div>
 
         {/* Hero Section with Stars and Shuffle */}
-        <div ref={heroRef} className="relative h-[100dvh] flex justify-center items-center overflow-hidden pointer-events-none">
-          {/* Star 1 */}
+        <div ref={heroRef} className="relative h-[100lvh] flex justify-center items-center overflow-hidden pointer-events-none">
           <Image
             ref={el => (starsRef.current[0] = el)}
             src="/images/star.svg"
@@ -73,7 +99,6 @@ const Page = () => {
             className="absolute top-40 right-10"
           />
 
-          {/* Star 2 */}
           <Image
             ref={el => (starsRef.current[1] = el)}
             src="/images/star.svg"
@@ -83,7 +108,6 @@ const Page = () => {
             className="absolute top-[60%] -right-10"
           />
 
-          {/* Star 3 */}
           <Image
             ref={el => (starsRef.current[2] = el)}
             src="/images/star.svg"
@@ -93,7 +117,6 @@ const Page = () => {
             className="absolute top-[33%] -left-32 rotate-45"
           />
 
-          {/* Star 4 */}
           <Image
             ref={el => (starsRef.current[3] = el)}
             src="/images/star.svg"
@@ -103,7 +126,6 @@ const Page = () => {
             className="absolute bottom-10 right-60 rotate-12"
           />
 
-          {/* Star 5 */}
           <Image
             ref={el => (starsRef.current[4] = el)}
             src="/images/star.svg"
@@ -113,7 +135,6 @@ const Page = () => {
             className="absolute bottom-40 left-10 -rotate-12"
           />
 
-          {/* Star 6 */}
           <Image
             ref={el => (starsRef.current[5] = el)}
             src="/images/star.svg"

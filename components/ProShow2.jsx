@@ -6,6 +6,24 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { SplitText } from 'gsap/SplitText';
 import Image from 'next/image';
+import { Open_Sans } from 'next/font/google';
+import localFont from 'next/font/local';
+
+// Google Font
+const openSans = Open_Sans({
+  subsets: ['latin'],
+  weight: ['300', '400', '500'],
+  display: 'swap',
+  variable: '--font-open-sans',
+});
+
+// Local Custom Font - UPDATE THIS PATH TO YOUR ACTUAL FONT LOCATION
+const wildWorld = localFont({
+  src: '../public/fonts/wild_world-webfont.woff2', // Update this path
+  variable: '--font-wild-world',
+  display: 'swap',
+  fallback: ['sans-serif'],
+});
 
 export default function SmoothScrollComponent() {
   const wrapperRef = useRef(null);
@@ -69,16 +87,6 @@ export default function SmoothScrollComponent() {
   return (
     <>
       <style jsx>{`
-        @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&display=swap");
-
-        @font-face {
-          font-family: "wild_worldbold";
-          src: url("https://assets.codepen.io/756881/wild_world-webfont.woff2") format("woff2"),
-               url("https://assets.codepen.io/756881/wild_world-webfont.woff") format("woff");
-          font-weight: normal;
-          font-style: normal;
-        }
-
         :root {
           --fluid-min-width: 320;
           --fluid-max-width: 1140;
@@ -117,7 +125,7 @@ export default function SmoothScrollComponent() {
 
         .smooth-scroll-wrapper {
           background-color: #111;
-          font-family: "Open Sans", sans-serif;
+          font-family: var(--font-open-sans), sans-serif;
           color: white;
           overscroll-behavior: none;
           margin: 0;
@@ -186,17 +194,17 @@ export default function SmoothScrollComponent() {
           text-align: center;
           line-height: 0.67;
           margin: 0 auto;
-          font-family: "wild_worldbold";
+          font-family: var(--font-wild-world), sans-serif;
         }
 
         .smooth-scroll-wrapper h1 .eyebrow {
-          font-family: "Open sans", sans-serif;
+          font-family: var(--font-open-sans), sans-serif;
           font-size: clamp(12px, 3vw, 40px);
           font-weight: 400;
         }
 
         .heading p {
-          font-family: "wild_worldbold";
+          font-family: var(--font-wild-world), sans-serif;
           font-size: 15.5vw;
           font-size: clamp(12px, 12.5vw, 250px);
           text-align: center;
@@ -361,7 +369,7 @@ export default function SmoothScrollComponent() {
           flex: 1 0 auto;
           font-size: var(--step-0);
           justify-self: flex-end;
-          font-family: "wild_worldbold";
+          font-family: var(--font-wild-world), sans-serif;
           font-size: clamp(16px, 3vw, 36px);
         }
 
@@ -378,7 +386,7 @@ export default function SmoothScrollComponent() {
         }
 
         .staggered h3 {
-          font-family: "wild_worldbold";
+          font-family: var(--font-wild-world), sans-serif;
           font-size: clamp(16px, 6vw, 80px);
           letter-spacing: 0.03em;
         }
@@ -421,7 +429,7 @@ export default function SmoothScrollComponent() {
         
       `}</style>
 
-      <div ref={wrapperRef} id="wrapper" className="smooth-scroll-wrapper">
+      <div ref={wrapperRef} id="wrapper" className={`smooth-scroll-wrapper ${openSans.variable} ${wildWorld.variable}`}>
         <section ref={contentRef} id="content">
           <div className="heading" aria-hidden="true">
             <p>जीLive</p>

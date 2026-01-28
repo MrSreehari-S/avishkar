@@ -274,11 +274,11 @@ function EmergingImage({ url, className, onMount }) {
 
 // Gallery data
 const images = [
-    { url: "/images/mainpage/pistonia.webp", title: "Autoshow", year: "pistonia", path: "/auto-show", r: 1, c: 1, s: 4 },
+    { url: "/images/mainpage/pistonia.webp", title: "Autoshow", year: "pistonia", path: "/auto-show", r: 1, c: 1, s: 3 },
     { url: "/images/mainpage/bikestunt.webp", title: "Bike stunt", year: "Free style", path: "/auto-show", r: 2, c: 5, s: 4 },
-    { url: "/images/mainpage/g-live.webp", title: "Proshow", year: "जी-LIVE", path: "/pro-show/g-live", r: 5, c: 3, s: 4 },
-    { url: "/images/mainpage/zeropause.webp", title: "Proshow", year: "ZEROPAUSE", path: "/pro-show/zero-pause", r: 7, c: 3, s: 5 },
-    { url: "/images/mainpage/events.webp", title: "", year: "Cultural & Technical Events", path: "/events", r: 8, c: 5, s: 4 },
+    { url: "/images/mainpage/g-live.webp", title: "Proshow", year: "जी-LIVE", path: "/pro-show/g-live", r: 5, c: 4, s: 3 },
+    { url: "/images/mainpage/zeropause.webp", title: "Proshow", year: "ZEROPAUSE", path: "/pro-show/zero-pause", r: 7, c: 3, s: 4 },
+    { url: "/images/mainpage/events.webp", title: "", year: "Cultural & Technical Events", path: "/events", r: 8, c: 5, s: 3 },
     // { url: "/images/mainpage/", title: "", year: "Technical Events", path: "/events/dept", r: 9, c: 1, s: 5 },
 ];
 
@@ -296,9 +296,8 @@ export default function HorizontalScroll() {
     };
 
     return (
-        <>
+        <div >
             <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700;900&display=swap');
         
         * {
           box-sizing: border-box;
@@ -308,7 +307,6 @@ export default function HorizontalScroll() {
           margin: 0;
           background-color: #101014;
           color: #f0f0f0;
-          font-family: 'Space Grotesk', ui-monospace, monospace;
           font-weight: 600;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
@@ -381,6 +379,6 @@ export default function HorizontalScroll() {
                     ))}
                 </div>
             </main>
-        </>
+        </div>
     );
 }
