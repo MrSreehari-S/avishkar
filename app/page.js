@@ -9,7 +9,6 @@ import { useRef, useEffect, useLayoutEffect } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Preload from '@/components/Preload';
 import { useRouter } from 'next/navigation';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -67,7 +66,6 @@ const Page = () => {
     <>
 
       <section className='relative text-[#AD242C] w-full'>
-        <Preload />
         <div className='fixed inset-0 -z-10 bg-black pointer-events-auto'>
           <GridScan
             sensitivity={0.75}

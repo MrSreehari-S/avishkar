@@ -4,6 +4,8 @@ import StaggeredMenu from "@/components/StaggeredMenu";
 import { ClerkProvider } from "@clerk/nextjs";
 import AuthUserButtonWrapper from "@/components/ui/AuthUserButtonWrapper";
 import LenisProvider from "@/components/LenisProvider";
+import { Analytics } from "@vercel/analytics/next"
+import PageTransition from "@/components/PageTransition";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -74,9 +76,11 @@ export default function RootLayout({ children }) {
           <div className="fixed top-6 right-32 z-30 flex items-center pointer-events-auto text-white">
             <AuthUserButtonWrapper />
           </div>
-
-          {/* Client-only smooth scroll */}
-          <LenisProvider>{children}</LenisProvider>
+          <LenisProvider>
+            <PageTransition>
+          {children}
+        </PageTransition>
+          </LenisProvider>
         </body>
       </html>
     </ClerkProvider>
