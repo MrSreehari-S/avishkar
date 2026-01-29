@@ -5,6 +5,25 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { SplitText } from 'gsap/SplitText';
+import Image from 'next/image';
+import { Open_Sans } from 'next/font/google';
+import localFont from 'next/font/local';
+
+// Google Font
+const openSans = Open_Sans({
+  subsets: ['latin'],
+  weight: ['300', '400', '500'],
+  display: 'swap',
+  variable: '--font-open-sans',
+});
+
+// Local Custom Font - UPDATE THIS PATH TO YOUR ACTUAL FONT LOCATION
+const wildWorld = localFont({
+  src: '../public/fonts/wild_world-webfont.woff2', // Update this path
+  variable: '--font-wild-world',
+  display: 'swap',
+  fallback: ['sans-serif'],
+});
 
 export default function SmoothScrollComponent() {
   const wrapperRef = useRef(null);
@@ -12,54 +31,62 @@ export default function SmoothScrollComponent() {
   const staggerRef = useRef(null);
 
   useEffect(() => {
+    // Check if plugins are available
+    if (!ScrollTrigger || !ScrollSmoother || !SplitText) {
+      console.error('GSAP plugins not loaded');
+      return;
+    }
+
     // Register plugins
     gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText);
 
-    // Create the smooth scroller
-    const smoother = ScrollSmoother.create({
-      wrapper: wrapperRef.current,
-      content: contentRef.current,
-      smooth: 1,
-      normalizeScroll: true,
-      ignoreMobileResize: true,
-      effects: true,
-      preventDefault: true
-    });
+    // Kill any existing instances first
+    ScrollTrigger.getAll().forEach(st => st.kill());
+    const existingSmoother = ScrollSmoother.get();
+    if (existingSmoother) existingSmoother.kill();
 
-    gsap.set(".heading", {
-      yPercent: -150,
-      opacity: 1
-    });
+    // Small delay to ensure DOM is ready
+    const timer = setTimeout(() => {
+      try {
+        // Create the smooth scroller
+        const smoother = ScrollSmoother.create({
+          wrapper: wrapperRef.current,
+          content: contentRef.current,
+          smooth: 1,
+          normalizeScroll: true,
+          ignoreMobileResize: true,
+          effects: true,
+          preventDefault: true
+        });
 
-    let tl = gsap.timeline();
-    let mySplitText = new SplitText(staggerRef.current, { type: "words,chars" });
-    let chars = mySplitText.chars;
-    
-    chars.forEach((char, i) => {
-      smoother.effects(char, { speed: 1, lag: (i + 1) * 0.1 });
-    });
+        gsap.set(".heading", {
+          yPercent: -150,
+          opacity: 1
+        });
+
+        let mySplitText = new SplitText(staggerRef.current, { type: "words,chars" });
+        let chars = mySplitText.chars;
+
+        chars.forEach((char, i) => {
+          smoother.effects(char, { speed: 1, lag: (i + 1) * 0.1 });
+        });
+      } catch (error) {
+        console.error('GSAP initialization error:', error);
+      }
+    }, 100);
 
     // Cleanup
     return () => {
-      smoother.kill();
+      clearTimeout(timer);
+      const smoother = ScrollSmoother.get();
+      if (smoother) smoother.kill();
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-      mySplitText.revert();
     };
   }, []);
 
   return (
     <>
       <style jsx>{`
-        @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&display=swap");
-
-        @font-face {
-          font-family: "wild_worldbold";
-          src: url("https://assets.codepen.io/756881/wild_world-webfont.woff2") format("woff2"),
-               url("https://assets.codepen.io/756881/wild_world-webfont.woff") format("woff");
-          font-weight: normal;
-          font-style: normal;
-        }
-
         :root {
           --fluid-min-width: 320;
           --fluid-max-width: 1140;
@@ -98,7 +125,7 @@ export default function SmoothScrollComponent() {
 
         .smooth-scroll-wrapper {
           background-color: #111;
-          font-family: "Open Sans", sans-serif;
+          font-family: var(--font-open-sans), sans-serif;
           color: white;
           overscroll-behavior: none;
           margin: 0;
@@ -167,17 +194,17 @@ export default function SmoothScrollComponent() {
           text-align: center;
           line-height: 0.67;
           margin: 0 auto;
-          font-family: "wild_worldbold";
+          font-family: var(--font-wild-world), sans-serif;
         }
 
         .smooth-scroll-wrapper h1 .eyebrow {
-          font-family: "Open sans", sans-serif;
+          font-family: var(--font-open-sans), sans-serif;
           font-size: clamp(12px, 3vw, 40px);
           font-weight: 400;
         }
 
         .heading p {
-          font-family: "wild_worldbold";
+          font-family: var(--font-wild-world), sans-serif;
           font-size: 15.5vw;
           font-size: clamp(12px, 12.5vw, 250px);
           text-align: center;
@@ -342,7 +369,7 @@ export default function SmoothScrollComponent() {
           flex: 1 0 auto;
           font-size: var(--step-0);
           justify-self: flex-end;
-          font-family: "wild_worldbold";
+          font-family: var(--font-wild-world), sans-serif;
           font-size: clamp(16px, 3vw, 36px);
         }
 
@@ -359,7 +386,7 @@ export default function SmoothScrollComponent() {
         }
 
         .staggered h3 {
-          font-family: "wild_worldbold";
+          font-family: var(--font-wild-world), sans-serif;
           font-size: clamp(16px, 6vw, 80px);
           letter-spacing: 0.03em;
         }
@@ -402,7 +429,7 @@ export default function SmoothScrollComponent() {
         
       `}</style>
 
-      <div ref={wrapperRef} id="wrapper" className="smooth-scroll-wrapper">
+      <div ref={wrapperRef} id="wrapper" className={`smooth-scroll-wrapper ${openSans.variable} ${wildWorld.variable}`}>
         <section ref={contentRef} id="content">
           <div className="heading" aria-hidden="true">
             <p>जीLive</p>
@@ -416,7 +443,7 @@ export default function SmoothScrollComponent() {
               <p data-speed="0.7">जीLive</p>
             </div>
           </div>
-          
+
           <section className="image-grid container smooth-section">
             <div className="image_cont" data-speed="1">
               <img data-speed="auto" src="/images/proshow/gLive/gLive (1).webp" alt="" />
@@ -435,12 +462,12 @@ export default function SmoothScrollComponent() {
           </section>
 
           <section className="bars container smooth-section">
-            {/* <div className="bars-text">
+            <div className="bars-text">
               <div className="flow content">
-                <h2>Speed Control</h2>
-                <p>Animate elements along at different speeds, slow them down or make them whizz past.</p>
+                <h2>7:00 PM</h2>
+                <p>@Musaliar College Pathanamthitta</p>
               </div>
-            </div> */}
+            </div>
             <div className="bars-cont">
               <div className="bar" data-speed="0.8">
                 <p>06 /</p>
@@ -491,9 +518,22 @@ export default function SmoothScrollComponent() {
             <div className="image_cont">
               <img data-speed="auto" src="/images/proshow/gLive/gLive (5).webp" alt="" />
             </div>
+            <Image
+              src="/images/proshow/gLive/glivelogo.webp"
+              width={126}
+              height={126}
+              alt='logoGLive'
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                zIndex: 10
+              }}
+            />
           </section>
 
-          <section className="spacer smooth-section"></section>
+          {/* <section className="spacer smooth-section"></section> */}
         </section>
       </div>
     </>

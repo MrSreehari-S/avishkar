@@ -56,14 +56,14 @@ export const Skiper67 = () => {
     <section ref={containerRef} className="relative flex h-screen w-full items-center justify-center  overflow-hidden">
       <div className="absolute top-1/4 flex flex-col items-center gap-6 text-center">
         <span className="relative text-white max-w-[22ch] text-[10px] sm:text-xs uppercase tracking-widest opacity-90 after:absolute after:left-1/2 after:top-full after:h-16 after:w-px after:bg-gradient-to-b after:from-foreground after:to-transparent after:mt-4">
-          Here’s how we did it last year.
+          Here is how we did it last year.
         </span>
       </div>      {/* Video Preview Trigger */}
       <div
         onClick={openVideo}
         className="relative group cursor-pointer w-[280px] aspect-video sm:w-[400px] overflow-hidden shadow-2xl"
       >
-        <div className="absolute inset-0 z-20 flex items-center justify-center text-white mix-blend-exclusion transition-transform duration-300 group-hover:scale-110">
+        <div className="absolute inset-0 z-0 flex items-center justify-center text-white mix-blend-exclusion transition-transform duration-300 group-hover:scale-110">
           <Play className="size-5 sm:size-6 fill-current mr-2" />
           <span className="text-sm font-medium uppercase tracking-tighter">Play</span>
         </div>

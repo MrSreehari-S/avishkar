@@ -4,36 +4,41 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from '@studio-freight/lenis';
+import Image from 'next/image';
 
-// Navigation Component
 
 
 // Hero Section Component
 const HeroSection = () => {
   return (
-    <section className="sticky top-0 bg-black">
+    <section className="sticky top-0 bg-black h-screen">
       <div className="relative flex justify-between items-end w-[99vw] h-screen">
-        <div className="absolute w-full h-full">
-          <img 
-            src="/images/proshow/zeropause/landing.webp" 
-            alt="" 
+        <div className="fixed inset-0 h-full z-0">
+          <img
+            src="/images/proshow/zeropause/landing.webp"
+            alt=""
             className="w-full h-full object-cover brightness-[55%]"
             style={{ filter: 'brightness(55%)' }}
           />
         </div>
-        <div className="relative flex flex-col justify-between items-stretch w-full h-screen px-[3.5vw] py-20 pb-10 text-white uppercase font-['Doner_Display',Arial,sans-serif] text-[12vw] leading-none">
+        <div className="fixed inset-0 flex flex-col justify-between items-stretch w-full h-screen px-[3.5vw] py-20 pb-10 text-white uppercase font-['Doner_Display',Arial,sans-serif] text-[12vw] leading-none z-0">
           <div className="overflow-hidden">
             <div className="overflow-hidden">
               <div className="relative" data-line>Zero</div>
             </div>
           </div>
           <div className="overflow-hidden">
-            <div className="relative text-center">
-              <span className="text-[#e6b8b8]">Pause</span>
+            <div className="relative text-center flex justify-center items-center">
+              <Image
+                src='/images/proshow/zeropause/logo.webp'
+                alt='logo'
+                width={250}
+                height={250}
+              />
             </div>
           </div>
           <div className="overflow-hidden">
-            <div className="relative text-right" data-line>Vibe</div>
+            <div className="relative text-right text-[#e6b8b8]" data-line>Pause</div>
           </div>
         </div>
       </div>
@@ -46,8 +51,8 @@ const WorkItem = ({ background, images, title, subtitle, colorClass }) => {
   return (
     <div className="relative flex items-stretch w-screen h-screen bg-black overflow-hidden" data-work="item">
       <div className="relative flex w-full h-full" data-work="item-container">
-        <div 
-          className="absolute w-full h-full aspect-video" 
+        <div
+          className="absolute w-full h-full aspect-video"
           data-work="item-background"
           style={{ filter: 'brightness(1)' }}
         >
@@ -56,13 +61,13 @@ const WorkItem = ({ background, images, title, subtitle, colorClass }) => {
         <div className="relative flex flex-col flex-1 justify-around items-stretch w-full px-[4vw] py-20 pb-10 gap-4">
           <div className="absolute inset-x-0 inset-y-0 flex flex-row justify-center items-center w-full">
             {images.map((img, idx) => (
-              <div 
-                key={idx} 
-                className="relative w-[21vw] h-full max-[767px]:w-[15vw]" 
+              <div
+                key={idx}
+                className="relative w-[21vw] h-full max-[767px]:w-[35vw] max-[479px]:w-[45vw]"
                 data-work="item-image"
               >
-                <div 
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 aspect-[4/5] w-[25vw] bg-white/75 p-[0.35em]"
+                <div
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 aspect-[4/5] w-[25vw] max-[767px]:w-[40vw] max-[479px]:w-[50vw] bg-white/75 p-[0.35em]"
                 >
                   <img src={img} alt="" className="w-full h-full object-cover" />
                 </div>
@@ -82,8 +87,8 @@ const WorkItem = ({ background, images, title, subtitle, colorClass }) => {
             </div>
           </div>
         </div>
-        <div 
-          className="absolute inset-0 z-[99] w-[105%] h-[105%] bg-black opacity-0 pointer-events-none" 
+        <div
+          className="absolute inset-0 z-[99] w-[105%] h-[105%] bg-black opacity-0 pointer-events-none"
           data-work="item-overlay"
         />
       </div>
@@ -97,24 +102,24 @@ const FooterSection = () => {
     <section className="sticky z-[1] bg-black">
       <div className="relative flex justify-between items-end w-[99vw] h-screen">
         <div className="absolute w-full h-full">
-          <img 
-            src="https://moussamamadou.github.io/scroll-trigger-gsap-gently/images/FOOTER.webp" 
-            alt="" 
+          <img
+            src="/images/proshow/zeropause/landing5.webp"
+            alt=""
             className="w-full h-full object-cover opacity-60"
           />
         </div>
         <div className="relative flex flex-col justify-between items-stretch w-full h-full px-[3.5vw] py-20 pb-10 text-white uppercase tracking-[0.5rem] font-['Doner_Display',Arial,sans-serif] text-[11.5vw] font-normal leading-none max-[479px]:text-[12.5vw]">
           <div className="overflow-hidden">
             <div data-line>
-              <span className="text-[#b8e6da]">SCROLL</span>
+              <span className="text-[#e6b8b8]">A NIGHT</span>
             </div>
           </div>
           <div className="overflow-hidden">
-            <div className="relative text-center">MISSION</div>
+            <div className="relative text-center">TO</div>
           </div>
           <div className="overflow-hidden">
             <div className="relative text-right" data-line>
-              <span className="text-[#b8e6da]">COMPLETE</span>
+              <span className="text-[#e6b8b8]">remember</span>
             </div>
           </div>
         </div>
@@ -129,7 +134,7 @@ export default function ScrollGSAPComponent() {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-    
+
     const workSection = workSectionRef.current;
     const workItems = workSection.querySelectorAll('[data-work="item"]');
 
@@ -237,7 +242,7 @@ export default function ScrollGSAPComponent() {
         scale: 1,
         scrollTrigger: getBaseScrollTrigger(ghostItems[index]),
       });
-      
+
       // Text animations
       [0, 1].forEach(i => {
         gsap.set(lines[i], {
@@ -323,37 +328,37 @@ export default function ScrollGSAPComponent() {
     {
       background: '/images/proshow/zeropause/landing2.webp',
       images: [
-        'https://moussamamadou.github.io/scroll-trigger-gsap-gently/images/SCARLETT-2.webp',
-        'https://moussamamadou.github.io/scroll-trigger-gsap-gently/images/SCARLETT-4.webp',
-        'https://moussamamadou.github.io/scroll-trigger-gsap-gently/images/SCARLETT-3.webp',
-        'https://moussamamadou.github.io/scroll-trigger-gsap-gently/images/SCARLETT-1.webp',
+        '/images/proshow/zeropause/l2 (4).webp',
+        '/images/proshow/zeropause/l2 (1).webp',
+        '/images/proshow/zeropause/l2 (3).webp',
+        '/images/proshow/zeropause/l2 (2).webp',
       ],
-      title: 'Heart',
-      subtitle: 'SCARLET',
-      colorClass: 'text-[#ffa6a6]',
+      title: 'Musaliar',
+      subtitle: 'college',
+      colorClass: 'text-[#7ABECD]',
     },
     {
       background: '/images/proshow/zeropause/landing3.webp',
       images: [
-        'https://moussamamadou.github.io/scroll-trigger-gsap-gently/images/PURPLE-2.jpg',
-        'https://moussamamadou.github.io/scroll-trigger-gsap-gently/images/PURPLE-1.jpg',
-        'https://moussamamadou.github.io/scroll-trigger-gsap-gently/images/PURPLE-3.jpg',
-        'https://moussamamadou.github.io/scroll-trigger-gsap-gently/images/PURPLE-4.jpg',
+        '/images/proshow/zeropause/l3 (1).webp',
+        '/images/proshow/zeropause/l3 (2).webp',
+        '/images/proshow/zeropause/l3 (3).webp',
+        '/images/proshow/zeropause/l3 (4).webp',
       ],
-      title: 'DREAM',
-      subtitle: 'Purple',
-      colorClass: 'text-[#b3d3ff]',
+      title: 'Feb-7',
+      subtitle: '2026',
+      colorClass: 'text-[#FBD16E]',
     },
     {
       background: '/images/proshow/zeropause/landing4.webp',
       images: [
-        'https://moussamamadou.github.io/scroll-trigger-gsap-gently/images/YELLOW.jpg',
-        'https://moussamamadou.github.io/scroll-trigger-gsap-gently/images/YELLOW-1.jpg',
-        'https://moussamamadou.github.io/scroll-trigger-gsap-gently/images/YELLOW-2.jpg',
-        'https://moussamamadou.github.io/scroll-trigger-gsap-gently/images/YELLOW-3.jpg',
+        '/images/proshow/zeropause/l4 (1).webp',
+        '/images/proshow/zeropause/l4 (3).webp',
+        '/images/proshow/zeropause/l4 (2).webp',
+        '/images/proshow/zeropause/l4 (4).webp',
       ],
-      title: 'SHINE',
-      subtitle: 'Yellow',
+      title: 'saturday',
+      subtitle: '6:30pm',
       colorClass: 'text-[#FDA2FD]',
     },
   ];
@@ -395,8 +400,8 @@ export default function ScrollGSAPComponent() {
           overflow-x: hidden;
         }
       `}</style>
-      
-      <div className="overflow-x-hidden bg-[#001]">
+
+      <div className="overflow-x-hidden bg-[#000]">
         <HeroSection />
         <section className="relative" ref={workSectionRef} data-work="section">
           <div className="relative">
