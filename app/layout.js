@@ -50,9 +50,9 @@ export default function RootLayout({ children }) {
         lang="en"
         className={`${geistSans.variable} ${geistMono.variable} ${bangers.variable}`}
       >
-        
+
         <body className="antialiased">
-          <Analytics/>
+          <Analytics />
           <div>
             {/* Menu overlay (unchanged) */}
             <div className="h-[100dvh] fixed inset-0 z-20 pointer-events-none">
@@ -84,11 +84,11 @@ export default function RootLayout({ children }) {
               <AuthUserButtonWrapper />
             </div>
           </div>
-          <LenisProvider>
-            <PageTransition>
-          {children}
-        </PageTransition>
-          </LenisProvider>
+          <PageTransition>
+            <LenisProvider>
+              {children}
+            </LenisProvider>
+          </PageTransition>
         </body>
       </html>
     </ClerkProvider>
