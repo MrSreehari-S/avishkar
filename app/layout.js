@@ -55,6 +55,7 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} ${bangers.variable}`}
       >
         <body className="antialiased">
+          <Analytics />
           {/* Menu overlay */}
           <div className="fixed inset-0 z-20 h-[100dvh] pointer-events-none">
             <StaggeredMenu
